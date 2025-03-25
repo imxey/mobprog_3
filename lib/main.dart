@@ -31,7 +31,7 @@ class MainScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
             Text(
-              'Halo, aku Jeki',
+              'Halo, aku Najma',
               style: TextStyle(fontSize: 24),
             ),
           ],
