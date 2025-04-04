@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/main_screen.dart'; // Panggil main_screen.dart
-
+import 'package:mobprog_3/pages/signIn.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const MainScreen(), // Panggil MainScreen sebagai halaman utama
+      home: LoginScreen(), 
     );
   }
 }
