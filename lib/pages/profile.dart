@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF7AB2D3),
-        title: const Text("Profil Pengguna", style: TextStyle(color: Colors.black)),
+        title: const Text("Profile", style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
