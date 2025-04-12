@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:infinite_carousel/infinite_carousel.dart';
+
+final List<String> orderTitles = [
+  'Logo',
+  'Poster',
+  'Banner',
+  'Desain Poster',
+  'Kartu Nama',
+  'Brosur Produk',
+];
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -57,33 +67,41 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(4, (index) {
-                        return Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 28,
-                              backgroundColor: Colors.white,
-                              child: Icon(
-                                Icons.all_inbox,
-                                color: Color(0xFF4A628A),
-                                size: 30,
+                    SizedBox(
+                      height: 120, // pastikan cukup tinggi
+                      child: InfiniteCarousel.builder(
+                        itemCount: orderTitles.length,
+                        itemExtent: 90,
+                        center: true,
+                        loop: true,
+                        itemBuilder: (context, index, realIndex) {
+                          return Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundColor: Colors.white,
+                                child: Icon(
+                                  Icons.all_inbox,
+                                  color: Color(0xFF4A628A),
+                                  size: 30,
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Kemasan Box',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Color(0xFF4A628A),
-                                fontWeight: FontWeight.w600,
+                              const SizedBox(height: 8),
+                              Text(
+                                orderTitles[index],
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color(0xFF4A628A),
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                          ],
-                        );
-                      }),
-                    ),
+                            ],
+                          );
+                        },
+                      ),
+                    )
+
+
                   ],
                 ),
               ),
