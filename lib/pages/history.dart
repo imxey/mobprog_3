@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'chat_detail.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -14,32 +15,34 @@ class _HistoryScreenState extends State<HistoryScreen> {
   List<Map<String, dynamic>> orders = [
     {
       "title": "Desain Logo",
-      "designer": "Nama Desainer",
+      "designer": "Desainer: Dzaky",
       "status": "Selesai",
       "date": "10 April 2025",
       "estimate": "13 April 2025",
-      "notes": "Warna dominan biru",
-      "image": "https://via.placeholder.com/150",
-      "revisable": false,
+      "doneDate": "13 April 2025",
+      "notes": "Warna merah dan oranye",
+      "image": "assets/logo.jpg",
+      "price": "150.000",
+      "rating": 0.0
     },
     {
       "title": "Desain Feed IG",
-      "designer": "Nama Desainer",
+      "designer": "Desainer: Najma",
       "status": "Sedang diproses",
       "date": "11 April 2025",
       "estimate": "15 April 2025",
       "notes": "",
-      "image": "",
-      "revisable": true,
+      "image": "assets/lily.jpg",
+      "price": "200.000"
     },
     {
       "title": "Desain Poster",
-      "designer": "Nama Desainer",
+      "designer": "Desainer: Xeyla",
       "status": "Batal",
       "date": "9 April 2025",
       "notes": "",
       "image": "",
-      "revisable": false,
+      "price": "120.000"
     },
   ];
 
@@ -122,7 +125,9 @@ class _HistoryScreenState extends State<HistoryScreen> {
                               const SizedBox(height: 4),
                               Text(order['designer'],
                                   style: const TextStyle(fontSize: 16)),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 4),
+                              Text("Harga: ${order['price']}", style: const TextStyle(fontSize: 16)),
+                              const SizedBox(height: 4),
                               Text(
                                 order['status'],
                                 style: TextStyle(
@@ -202,16 +207,27 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold)),
                   const SizedBox(height: 10),
-                  Text("Status: ${order['status']}", style: const TextStyle(fontSize: 16)),
-                  Text("Tanggal Pemesanan: ${order['date']}", style: const TextStyle(fontSize: 16)),
+                  Text("Status: ${order['status']}",
+                      style: const TextStyle(fontSize: 16)),
+                  Text("Tanggal Pemesanan: ${order['date']}",
+                      style: const TextStyle(fontSize: 16)),
+                  if (order['status'] == 'Selesai' && order['doneDate'] != null)
+                    Text("Tanggal Selesai: ${order['doneDate']}",
+                        style: const TextStyle(fontSize: 16)),
                   if (order['status'] != 'Selesai' && order['estimate'] != null)
-                    Text("Estimasi Selesai: ${order['estimate']}", style: const TextStyle(fontSize: 16)),
-                  Text("Nama Desainer: ${order['designer']}", style: const TextStyle(fontSize: 16)),
+                    Text("Estimasi Selesai: ${order['estimate']}",
+                        style: const TextStyle(fontSize: 16)),
+                  Text("${order['designer']}",
+                      style: const TextStyle(fontSize: 16)),
+                  Text("Harga: Rp ${order['price']}",
+                      style: const TextStyle(fontSize: 16)),
                   if (order['notes'] != "")
-                    Text("Catatan: ${order['notes']}", style: const TextStyle(fontSize: 16)),
+                    Text("Catatan: ${order['notes']}",
+                        style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 10),
                   if (order['status'] == 'Selesai')
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.network(order['image']),
                         const SizedBox(height: 10),
@@ -221,19 +237,41 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           },
                           child: const Text('Unduh Desain'),
                         ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          "Beri Rating Desain:",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 10),
+                        RatingBar.builder(
+                          initialRating: order['rating'] ?? 0.0,
+                          minRating: 1,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 5,
+                          itemPadding:
+                          const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            setState(() {
+                              order['rating'] = rating;
+                            });
+                          },
+                        ),
                       ],
                     ),
                   if (order['status'] == 'Sedang diproses')
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Progress Preview:", style: TextStyle(fontSize: 16)),
+                        const Text("Progress Preview:",
+                            style: TextStyle(fontSize: 16)),
+                        Image.network(order['image']),
                         const SizedBox(height: 10),
-                        Container(
-                          height: 100,
-                          color: Colors.grey[300],
-                          child: const Center(child: Text("Preview Gambar")),
-                        ),
                       ],
                     ),
                   const SizedBox(height: 20),
