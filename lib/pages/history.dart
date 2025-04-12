@@ -25,14 +25,14 @@ class _HistoryScreenState extends State<HistoryScreen> {
       'date': '2025-04-01',
       'status': 'Selesai',
       'designer': 'Rina',
-      'image': 'assets/images/lily.jpg',
+      'image': 'assets/lily.jpg',
     },
     {
       'title': 'Banner Feed IG',
       'date': '2025-04-03',
       'status': 'Sedang Diproses',
       'designer': 'Dimas',
-      'image': 'assets/images/tulip.jpg',
+      'image': 'assets/tulip.jpg',
     },
   ];
 
