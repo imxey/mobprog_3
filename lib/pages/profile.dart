@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color(0xFF7AB2D3),
-        title: const Text("Profil Pengguna", style: TextStyle(color: Colors.black)),
+        title: const Text("Account Profile", style: TextStyle(color: Colors.black)),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
