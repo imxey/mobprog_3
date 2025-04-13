@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4A628A)),
                       ),
                       SizedBox(height: 6),
-                      ProfileInfoRow(title: "Email", value: "putrianna@email.com"),
+                      ProfileInfoRow(title: "Email", value: "putrianna@gmail.com"),
                       ProfileInfoRow(title: "Phone", value: "08123456789"),
                       ProfileInfoRow(title: "Address", value: "Jakarta, Indonesia"),
                     ],
