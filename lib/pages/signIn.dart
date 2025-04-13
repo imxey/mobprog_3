@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main_screen.dart';
 import 'package:mobprog_3/models/user_model.dart';
+import 'signUp.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -127,14 +128,13 @@ class _SignInState extends State<SignIn> {
                       ),
                       onPressed: () {
                         String email = emailController.text;
-                        // Kamu bisa pakai passwordController.text juga kalau mau
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const MainScreen(),
                           ),
                         );
-                        UserModel(email); // masih dummy
+                        UserModel(email); 
                       },
                       child: Ink(
                         decoration: BoxDecoration(
@@ -159,7 +159,14 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(height: 10),
                     Center(
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUp(),
+                            ),
+                          );
+                        },
                         child: Text.rich(
                           TextSpan(
                             children: [
@@ -189,7 +196,7 @@ class _SignInState extends State<SignIn> {
                       alignment: WrapAlignment.center,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.g_translate, size: 25),
+                          icon: Icon(Icons.mail, size: 25),
                           onPressed: () {},
                         ),
                         IconButton(

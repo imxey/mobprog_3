@@ -3,6 +3,7 @@ class UserModel {
   static String email = '';
   static String phone = '';
   static String address = '';
+  static String img = '';
 
   List<Map<String, dynamic>> usersData = [
     {
@@ -10,18 +11,21 @@ class UserModel {
       'email': 'xeyla@gmail.com',
       'no': '085183520848',
       'address': 'beji',
+      'img': 'assets/xeyla.png',
     },
     {
       'nama': 'najma',
       'email': 'najma@gmail.com',
       'no': '08123456789',
       'address': 'debar',
+      'img': 'assets/jema.png',
     },
     {
       'nama': 'Dzaky',
       'email': 'Dzaky@gmail.com',
       'no': '08123456789',
       'address': 'mares',
+      'img': 'assets/dzaky.png',
     },
   ];
 
@@ -32,6 +36,7 @@ class UserModel {
         email = u['email'] ?? '';
         phone = u['no'] ?? '';
         address = u['address'] ?? '';
+        img = u['img'] ?? '';
         return;
       }
     }

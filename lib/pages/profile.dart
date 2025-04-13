@@ -8,7 +8,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(UserModel.email);
     return Scaffold(
       backgroundColor: const Color(0xFFDFF2EB),
       appBar: AppBar(
@@ -30,9 +29,9 @@ class ProfileScreen extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 45,
-                  backgroundImage: AssetImage('assets/images/profile.jpg'),
+                  backgroundImage: AssetImage(UserModel.img),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
