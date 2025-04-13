@@ -178,7 +178,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                                     MaterialPageRoute(
                                       builder:
                                           (context) =>
-                                              const ChatDetailScreen(chatId: 0),
+                                              ChatDetailScreen(chatId: index),
                                     ),
                                   );
                                 },
