@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'main_screen.dart';
+import 'package:mobprog_3/models/user_model.dart';
 
-class signIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
+
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +48,6 @@ class signIn extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15),
-
                     const Text(
                       "Welcome Back!",
                       style: TextStyle(
@@ -44,14 +56,13 @@ class signIn extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 5),
-
                     const Text(
                       "Please Sign in to continue",
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                     ),
                     const SizedBox(height: 30),
-
                     TextField(
+                      controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email, size: 20),
                         hintText: "Email Address",
@@ -66,8 +77,8 @@ class signIn extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12),
-
                     TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock, size: 20),
@@ -83,7 +94,6 @@ class signIn extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -100,13 +110,15 @@ class signIn extends StatelessWidget {
                           onPressed: () {},
                           child: const Text(
                             "Forgot Password?",
-                            style: TextStyle(color: Color(0xFF4A628A), fontSize: 12),
+                            style: TextStyle(
+                              color: Color(0xFF4A628A),
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
-
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
@@ -114,12 +126,15 @@ class signIn extends StatelessWidget {
                         padding: EdgeInsets.zero,
                       ),
                       onPressed: () {
+                        String email = emailController.text;
+                        // Kamu bisa pakai passwordController.text juga kalau mau
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const MainScreen(),
                           ),
                         );
+                        UserModel(email); // masih dummy
                       },
                       child: Ink(
                         decoration: BoxDecoration(
@@ -142,7 +157,6 @@ class signIn extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-
                     Center(
                       child: TextButton(
                         onPressed: () {},
@@ -169,9 +183,7 @@ class signIn extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 8),
-
                     Wrap(
                       spacing: 8,
                       alignment: WrapAlignment.center,

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'editprofile.dart';
 import 'aboutus.dart';
+import 'package:mobprog_3/models/user_model.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print(UserModel.email);
     return Scaffold(
       backgroundColor: const Color(0xFFDFF2EB),
       appBar: AppBar(
@@ -36,15 +38,15 @@ class ProfileScreen extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children:  [
                       Text(
-                        "Putri Anna",
+                        UserModel.name,
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4A628A)),
                       ),
                       SizedBox(height: 6),
-                      ProfileInfoRow(title: "Email", value: "putrianna@gmail.com"),
-                      ProfileInfoRow(title: "Phone", value: "08123456789"),
-                      ProfileInfoRow(title: "Address", value: "Jakarta, Indonesia"),
+                      ProfileInfoRow(title: "Email", value: UserModel.email),
+                      ProfileInfoRow(title: "Phone", value: UserModel.phone),
+                      ProfileInfoRow(title: "Address", value: UserModel.address),
                     ],
                   ),
                 ),
