@@ -43,8 +43,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 6),
                       ProfileInfoRow(title: "Email", value: "putrianna@email.com"),
-                      ProfileInfoRow(title: "No. HP", value: "08123456789"),
-                      ProfileInfoRow(title: "Alamat", value: "Jakarta, Indonesia"),
+                      ProfileInfoRow(title: "Phone", value: "08123456789"),
+                      ProfileInfoRow(title: "Address", value: "Jakarta, Indonesia"),
                     ],
                   ),
                 ),
@@ -104,7 +104,6 @@ class ProfileScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout, color: Color(0xFF4A628A)),
             title: const Text('Log Out'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
             onTap: () {
               Navigator.popUntil(context, (route) => route.isFirst);
             },

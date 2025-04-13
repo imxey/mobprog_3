@@ -122,7 +122,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               controller: addressController,
               maxLines: 2,
               decoration: const InputDecoration(
-                labelText: "Alamat",
+                labelText: "Address",
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(),
