@@ -8,19 +8,71 @@ class Navbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      type: BottomNavigationBarType.fixed, // Supaya label tetap terlihat
-      selectedItemColor: Colors.blue, // Warna saat dipilih
-      unselectedItemColor: Colors.black, // Warna default
-      showUnselectedLabels: true, // Tampilkan label yang tidak aktif
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.history), label: "History"),
-        BottomNavigationBarItem(icon: Icon(Icons.message), label: "Message"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-      ],
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 10,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: onTap,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Color(0xFF4A628A),
+          unselectedItemColor: Color(0xFF747B89),
+          showUnselectedLabels: true,
+          unselectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
+          selectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Icon(Icons.home),
+              ),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Icon(Icons.history),
+              ),
+              label: "History",
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Icon(Icons.message),
+              ),
+              label: "Message",
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(top: 5.0),
+                child: Icon(Icons.person),
+              ),
+              label: "Profile",
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -20,7 +20,6 @@ class _MainScreenState extends State<MainScreen> {
     const HistoryScreen(),
     const MessageScreen(),
     const ProfileScreen(),
-    
   ];
 
   void _onItemTapped(int index) {
