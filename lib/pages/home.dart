@@ -193,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     height: 160,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withValues(alpha: 76),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: const Center(
