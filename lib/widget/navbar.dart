@@ -29,6 +29,7 @@ class Navbar extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
         child: BottomNavigationBar(
+          backgroundColor: Colors.white,
           currentIndex: currentIndex,
           onTap: onTap,
           type: BottomNavigationBarType.fixed,

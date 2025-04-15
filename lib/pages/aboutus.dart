@@ -6,53 +6,76 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFDFF2EB),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF7AB2D3),
-        title: const Text('About Us', style: TextStyle(color: Colors.white)),
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(16.0),
+      backgroundColor: const Color(0xFFF5F7FA),
+      body: Column(
         children: [
-          const Text(
-            'Tim Pengembang Aplikasi',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF4A628A),
+          // Header gradient seperti home
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.fromLTRB(16, 40, 16, 20),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF3C8CE7), Color(0xFF00EAFF)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(24),
+                bottomRight: Radius.circular(24),
+              ),
+            ),
+            child: const SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Tentang Kami',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Kami adalah mahasiswa TI yang berkolaborasi membuat aplikasi pemesanan jasa desain grafis berbasis mobile.',
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                ],
+              ),
             ),
           ),
-          const SizedBox(height: 8),
-          const Text(
-            'Kami adalah mahasiswa TI yang berkolaborasi untuk membuat aplikasi pemesanan jasa desain grafis berbasis mobile.',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 14, color: Colors.black87),
-          ),
+
           const SizedBox(height: 24),
 
-          const BioCard(
-            name: 'Xeyla Vithra Arfina',
-            nim: '2307411032',
-            kelas: 'TI-4B',
-            imagePath: 'assets/images/person1.png',
-          ),
-          const SizedBox(height: 16),
-
-          const BioCard(
-            name: 'Muhammad Dzaky Fuzan',
-            nim: '2307411040',
-            kelas: 'TI-4B',
-            imagePath: 'assets/images/person2.png',
-          ),
-          const SizedBox(height: 16),
-
-          const BioCard(
-            name: 'Najma Gusti Ayu Mahesa',
-            nim: '2307411050',
-            kelas: 'TI-4B',
-            imagePath: 'assets/images/person3.png',
+          // List biodata
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              children: const [
+                BioCard(
+                  name: 'Xeyla Vithra Arfina',
+                  nim: '2307411032',
+                  kelas: 'TI-4B',
+                  imagePath: 'assets/xeyla.jpg',
+                ),
+                SizedBox(height: 16),
+                BioCard(
+                  name: 'Muhammad Dzaky Fuzan',
+                  nim: '2307411040',
+                  kelas: 'TI-4B',
+                  imagePath: 'assets/dzaky.jpg',
+                ),
+                SizedBox(height: 16),
+                BioCard(
+                  name: 'Najma Gusti Ayu Mahesa',
+                  nim: '2307411050',
+                  kelas: 'TI-4B',
+                  imagePath: 'assets/najma.jpg',
+                ),
+                SizedBox(height: 24),
+              ],
+            ),
           ),
         ],
       ),
@@ -77,19 +100,15 @@ class BioCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFFB9E5E8), Color(0xFFDFF2EB)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black26,
-            blurRadius: 8,
-            offset: Offset(2, 4),
+            color: Colors.black12,
+            blurRadius: 6,
+            offset: Offset(2, 3),
           ),
         ],
       ),
@@ -107,26 +126,10 @@ class BioCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Color(0xFF4A628A),
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.badge, size: 18, color: Colors.black54),
-              const SizedBox(width: 6),
-              Text('NIM: $nim', style: const TextStyle(fontSize: 14)),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.class_, size: 18, color: Colors.black54),
-              const SizedBox(width: 6),
-              Text('Kelas: $kelas', style: const TextStyle(fontSize: 14)),
-            ],
-          ),
+          Text('NIM: $nim', style: const TextStyle(fontSize: 14)),
+          Text('Kelas: $kelas', style: const TextStyle(fontSize: 14)),
         ],
       ),
     );

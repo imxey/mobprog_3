@@ -18,7 +18,7 @@ class UserModel {
       'email': 'najma@gmail.com',
       'no': '08123456789',
       'address': 'debar',
-      'img': 'assets/jema.png',
+      'img': 'assets/jema.jpg',
     },
     {
       'nama': 'Dzaky',

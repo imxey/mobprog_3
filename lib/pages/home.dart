@@ -67,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
+          backgroundColor: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -88,14 +89,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Color(0xFF4B4F57), // Warna border
+                      width: 2, // Tebal border
+                    ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10), // Sedikit lebih kecil dari container biar border kelihatan
                     child: Image.asset(
                       orderImages[index],
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
-                        return const Text('Gagal load gambar');
+                        return const Center(child: Text('Gagal load gambar'));
                       },
                     ),
                   ),
@@ -118,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF8BBEE8),
+                      backgroundColor: Color(0xFF3C8CE7),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -132,7 +137,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: const Text(
                       'Pesan Desain',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 )
@@ -172,13 +180,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'LOGO',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Image.asset(
+                        'assets/logo.png', // pastikan path ini sesuai dengan lokasi sebenarnya
+                        height: 40,
                       ),
                       Row(
                         children: const [
@@ -188,17 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    height: 160,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 76),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.image, size: 80, color: Colors.white),
-                    ),
+
                   ),
                 ],
               ),
@@ -337,7 +331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
+                    padding: const EdgeInsets.fromLTRB(16, 32, 16, 8),
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
@@ -369,22 +363,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                 'Aplikasi ini dilengkapi dengan berbagai fitur unggulan, antara lain:\n\n'
                                 '• Formulir Pemesanan Online\n'
-                                'Pengguna dapat mengisi detail kebutuhan desain secara lengkap, mulai dari jenis desain yang diinginkan, referensi visual, hingga deadline pengerjaan.\n\n'
-
                                 '• Katalog Portofolio Desainer\n'
-                                'Tersedia katalog berisi portofolio dari para desainer, sehingga pengguna bisa memilih desainer yang sesuai dengan gaya desain yang diinginkan.\n\n'
-
                                 '• Fitur Chat & Konsultasi\n'
-                                'Memungkinkan komunikasi langsung antara klien dan desainer untuk diskusi konsep, revisi, atau tanya jawab seputar desain.\n\n'
-
                                 '• Riwayat dan Status Pesanan\n'
-                                'Pengguna dapat melihat status pesanan secara real-time, apakah sedang dalam proses, revisi, atau telah selesai.\n\n'
-
                                 '• Notifikasi Otomatis\n'
-                                'Pengingat otomatis akan dikirimkan kepada pengguna terkait update pesanan, pembayaran, atau tenggat waktu revisi.\n\n'
-
-                                '• Sistem Pembayaran Terintegrasi\n'
-                                'Pembayaran dapat dilakukan langsung melalui aplikasi dengan metode yang beragam dan aman.',
+                                '• Sistem Pembayaran Terintegrasi\n',
                             style: TextStyle(fontSize: 13),
                           ),
                         ],

@@ -9,43 +9,69 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFDFF2EB),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFF7AB2D3),
-        title: const Text("Account Profile", style: TextStyle(color: Colors.black)),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      backgroundColor: const Color(0xFFF5F6FA),
+      body: Column(
         children: [
-          // Bagian Profile Card
+          // Header dengan card profil
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFB9E5E8),
-              borderRadius: BorderRadius.circular(16),
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFF3C8CE7), Color(0xFF00EAFF)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(24),
+                bottomRight: Radius.circular(24),
+              ),
             ),
-            child: Row(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 20), // <= padding atas dikurangi
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 45,
-                  backgroundImage: AssetImage(UserModel.img),
+                const Text(
+                  'Profil Saya',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.95),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
-                      Text(
-                        UserModel.name,
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF4A628A)),
+                    children: [
+                      CircleAvatar(
+                        radius: 36,
+                        backgroundImage: AssetImage(UserModel.img),
                       ),
-                      SizedBox(height: 6),
-                      ProfileInfoRow(title: "Email", value: UserModel.email),
-                      ProfileInfoRow(title: "Phone", value: UserModel.phone),
-                      ProfileInfoRow(title: "Address", value: UserModel.address),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              UserModel.name,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF4B4F57),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            ProfileInfoRow(title: "Email", value: UserModel.email),
+                            ProfileInfoRow(title: "Phone", value: UserModel.phone),
+                            ProfileInfoRow(title: "Address", value: UserModel.address),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -53,61 +79,46 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
-
-          // Statistik Mini
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              _StatCard(icon: Icons.check_circle, label: "Selesai", count: "5"),
-              _StatCard(icon: Icons.timelapse, label: "Proses", count: "2"),
-              _StatCard(icon: Icons.star, label: "Ulasan", count: "3"),
-            ],
-          ),
-
-          const SizedBox(height: 30),
-
-          // Menu Navigasi
-          ListTile(
-            leading: const Icon(Icons.person, color: Color(0xFF4A628A)),
-            title: const Text('My Account'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const EditProfileScreen()),
-              );
-            },
-          ),
-
-          // Switch Dark Mode (dummy)
-          SwitchListTile(
-            value: false,
-            onChanged: (val) {
-              // Tambahkan logika untuk dark mode di sini
-            },
-            title: const Text("Dark Mode"),
-            secondary: const Icon(Icons.dark_mode, color: Color(0xFF4A628A)),
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.info, color: Color(0xFF4A628A)),
-            title: const Text('About Us'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AboutUsScreen()),
-              );
-            },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.logout, color: Color(0xFF4A628A)),
-            title: const Text('Log Out'),
-            onTap: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
-            },
+          // Konten scrollable
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [
+                      _StatCard(icon: Icons.check_circle, label: "Selesai", count: "5"),
+                      _StatCard(icon: Icons.timelapse, label: "Proses", count: "2"),
+                      _StatCard(icon: Icons.star, label: "Ulasan", count: "3"),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                _MenuTile(
+                  icon: Icons.person,
+                  label: 'My Account',
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const EditProfileScreen())),
+                ),
+                _MenuTile(
+                  icon: Icons.dark_mode,
+                  label: 'Dark Mode',
+                  trailing: Switch(value: false, onChanged: (val) {}),
+                ),
+                _MenuTile(
+                  icon: Icons.info,
+                  label: 'About Us',
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AboutUsScreen())),
+                ),
+                _MenuTile(
+                  icon: Icons.logout,
+                  label: 'Log Out',
+                  onTap: () => Navigator.popUntil(context, (route) => route.isFirst),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -115,7 +126,6 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-// Komponen Info Baris Profil
 class ProfileInfoRow extends StatelessWidget {
   final String title;
   final String value;
@@ -125,11 +135,14 @@ class ProfileInfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4.0),
+      padding: const EdgeInsets.only(bottom: 2.0),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("$title: ", style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+          Text("$title: ",
+              style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF4B4F57))),
           Expanded(
             child: Text(value, style: const TextStyle(fontSize: 14)),
           ),
@@ -139,7 +152,6 @@ class ProfileInfoRow extends StatelessWidget {
   }
 }
 
-// Komponen Kartu Statistik
 class _StatCard extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -154,7 +166,7 @@ class _StatCard extends StatelessWidget {
         CircleAvatar(
           radius: 22,
           backgroundColor: Colors.white,
-          child: Icon(icon, color: Color(0xFF4A628A)),
+          child: Icon(icon, color: Color(0xFF3C8CE7)),
         ),
         const SizedBox(height: 6),
         Text(count, style: const TextStyle(fontWeight: FontWeight.bold)),
@@ -164,3 +176,27 @@ class _StatCard extends StatelessWidget {
   }
 }
 
+class _MenuTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Widget? trailing;
+  final VoidCallback? onTap;
+
+  const _MenuTile({
+    required this.icon,
+    required this.label,
+    this.trailing,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+      leading: Icon(icon, color: Color(0xFF3C8CE7)),
+      title: Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+      trailing: trailing ?? const Icon(Icons.arrow_forward_ios, size: 16),
+      onTap: onTap,
+    );
+  }
+}

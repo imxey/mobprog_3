@@ -10,6 +10,7 @@ class MessageScreen extends StatelessWidget {
       Container(
         padding: const EdgeInsets.all(16),
         child: Card(
+          color: Colors.white,
           elevation: 2,
           child: ListTile(
             leading: CircleAvatar(
@@ -36,6 +37,7 @@ class MessageScreen extends StatelessWidget {
       Container(
         padding: const EdgeInsets.all(16),
         child: Card(
+          color: Colors.white,
           elevation: 2,
           child: ListTile(
             leading: CircleAvatar(
@@ -62,6 +64,7 @@ class MessageScreen extends StatelessWidget {
       Container(
         padding: const EdgeInsets.all(16),
         child: Card(
+          color: Colors.white,
           elevation: 2,
           child: ListTile(
             leading: CircleAvatar(
@@ -88,9 +91,38 @@ class MessageScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Message"),
-        automaticallyImplyLeading: false,
+      backgroundColor: const Color(0xFFF5F6FA),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF3C8CE7), Color(0xFF00EAFF)],
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(24),
+              bottomRight: Radius.circular(24),
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Message',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
 
       body: ListView(scrollDirection: Axis.vertical, children: [...chatItems]),

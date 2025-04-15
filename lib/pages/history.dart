@@ -61,11 +61,38 @@ class _HistoryScreenState extends State<HistoryScreen> {
             : orders.where((o) => o['status'] == selectedFilter).toList();
 
     return Scaffold(
-      backgroundColor: color2,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: color3,
-        title: const Text('Order History'),
+      backgroundColor: const Color(0xFFF5F6FA),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF3C8CE7), Color(0xFF00EAFF)],
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(24),
+              bottomRight: Radius.circular(24),
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: SafeArea(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Order History',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -80,8 +107,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
               ),
               child: DropdownButton<String>(
                 value: selectedFilter,
-                style: TextStyle(fontSize: 18, color: color4),
-                iconEnabledColor: color4,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF4B4F57),
+                    fontWeight: FontWeight.w600,),
+                iconEnabledColor: Color(0xFF4B4F57),
                 underline: const SizedBox(),
                 onChanged: (String? newValue) {
                   setState(() {
@@ -107,7 +137,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     margin: const EdgeInsets.symmetric(vertical: 10),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: color1,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(

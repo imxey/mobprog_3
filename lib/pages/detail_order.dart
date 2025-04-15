@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'confirmation_order.dart';
 
 class OrderFormPage extends StatefulWidget {
   final String orderType;
@@ -40,11 +41,52 @@ class _OrderFormPageState extends State<OrderFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Form Pemesanan - ${widget.orderType}'),
-        backgroundColor: const Color(0xFF3C8CE7),
-        foregroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF5F6FA),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80), // Kurangi tingginya
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF3C8CE7), Color(0xFF00EAFF)],
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(24),
+              bottomRight: Radius.circular(24),
+            ),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), // Kurangi padding vertical
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Form Pemesanan - ${widget.orderType}',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 48), // Agar teks tetap di tengah (kompensasi untuk IconButton)
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -62,18 +104,24 @@ class _OrderFormPageState extends State<OrderFormPage> {
               const SizedBox(height: 16),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text(_tanggalPemesanan == null
-                    ? 'Tanggal Pemesanan'
-                    : 'Tanggal Pemesanan: ${_tanggalPemesanan!.toLocal()}'.split(' ')[0]),
+                title: Text(
+                  _tanggalPemesanan != null
+                      ? 'Tanggal Pemesanan: ${_tanggalPemesanan!.toLocal().toString().split(' ')[0]}'
+                      : 'Tanggal Pemesanan: yyyy-mm-dd',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () => _selectDate(context, true),
               ),
               const SizedBox(height: 8),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text(_tanggalSelesai == null
-                    ? 'Tanggal Selesai'
-                    : 'Tanggal Selesai: ${_tanggalSelesai!.toLocal()}'.split(' ')[0]),
+                title: Text(
+                  _tanggalSelesai != null
+                      ? 'Tanggal Selesai: ${_tanggalSelesai!.toLocal().toString().split(' ')[0]}'
+                      : 'Tanggal Selesai: yyyy-mm-dd',
+                  style: const TextStyle(fontSize: 16),
+                ),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () => _selectDate(context, false),
               ),
@@ -92,14 +140,35 @@ class _OrderFormPageState extends State<OrderFormPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF3C8CE7),
                   padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate() &&
                       _tanggalPemesanan != null &&
                       _tanggalSelesai != null) {
-                    // Simpan data atau navigasi ke halaman lain
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Pemesanan berhasil disimpan!')),
+
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(milliseconds: 400),
+                        pageBuilder: (_, __, ___) => OrderConfirmationPage(
+                          nama: _namaController.text,
+                          deskripsi: _deskripsiController.text,
+                          tanggalPemesanan: _tanggalPemesanan!,
+                          tanggalSelesai: _tanggalSelesai!,
+                          orderType: widget.orderType,
+                        ),
+                        transitionsBuilder: (_, animation, __, child) {
+                          return SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(1, 0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          );
+                        },
+                      ),
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'main_screen.dart';
 import 'package:mobprog_3/models/user_model.dart';
 import 'signUp.dart';
+import 'splash_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -13,8 +14,6 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  @override
 
   @override
   Widget build(BuildContext context) {
