@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart'; // Tambahkan untuk format rupiah
 import 'main_screen.dart';
 
 class OrderConfirmationPage extends StatefulWidget {
@@ -30,8 +31,38 @@ class _OrderConfirmationPageState extends State<OrderConfirmationPage> {
     'Kartu Kredit'
   ];
 
+  int _getPrice() {
+    switch (widget.orderType) {
+      case 'Logo':
+        return 100000;
+      case 'Poster':
+        return 80000;
+      case 'Banner':
+        return 90000;
+      case 'Kartu Nama':
+        return 50000;
+      case 'Kotak Box':
+        return 120000;
+      case 'Brosur':
+        return 70000;
+      default:
+        return 0;
+    }
+  }
+
+  String _formatCurrency(int amount) {
+    final formatCurrency = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: 'Rp ',
+      decimalDigits: 0,
+    );
+    return formatCurrency.format(amount);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final harga = _getPrice();
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6FA),
       appBar: PreferredSize(
@@ -106,11 +137,14 @@ class _OrderConfirmationPageState extends State<OrderConfirmationPage> {
                 const SizedBox(height: 12),
                 _buildInfoRow('Nama Pemesan', widget.nama),
                 _buildInfoRow('Tipe Order', widget.orderType),
-                _buildInfoRow('Tanggal Pemesanan',
+                _buildInfoRow(
+                    'Tanggal Pemesanan',
                     '${widget.tanggalPemesanan.toLocal().toString().split(' ')[0]}'),
-                _buildInfoRow('Tanggal Selesai',
+                _buildInfoRow(
+                    'Tanggal Selesai',
                     '${widget.tanggalSelesai.toLocal().toString().split(' ')[0]}'),
                 _buildInfoRow('Deskripsi Desain', widget.deskripsi),
+                _buildInfoRow('Harga', _formatCurrency(harga)),
                 const SizedBox(height: 16),
                 const Text(
                   'Metode Pembayaran',
@@ -139,14 +173,14 @@ class _OrderConfirmationPageState extends State<OrderConfirmationPage> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF3C8CE7),
-                      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 32),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 32),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     onPressed: _selectedPaymentMethod != null
                         ? () {
-                      // Simulasi proses pembayaran
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -154,10 +188,10 @@ class _OrderConfirmationPageState extends State<OrderConfirmationPage> {
                           ),
                         ),
                       );
-                      // Navigasi langsung ke Home
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const MainScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const MainScreen()),
                             (route) => false,
                       );
                     }

@@ -33,7 +33,7 @@ class Navbar extends StatelessWidget {
           currentIndex: currentIndex,
           onTap: onTap,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Color(0xFF4A628A),
+          selectedItemColor: Color(0xFF3C8CE7),
           unselectedItemColor: Color(0xFF747B89),
           showUnselectedLabels: true,
           unselectedLabelStyle: const TextStyle(

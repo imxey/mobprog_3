@@ -178,21 +178,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Image.asset(
-                        'assets/logo.png', // pastikan path ini sesuai dengan lokasi sebenarnya
+                        'assets/logo.png',
                         height: 40,
                       ),
-                      Row(
-                        children: const [
-                          Icon(Icons.notifications, color: Colors.white),
-                          SizedBox(width: 12),
-                          Icon(Icons.settings, color: Colors.white),
-                        ],
+                      const SizedBox(width: 12),
+                      const Text(
+                        'Designly',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'Montserrat', // Ganti font family sesuai kebutuhan
+                          letterSpacing: 1.2,
+                        ),
                       ),
                     ],
-
                   ),
                 ],
               ),
