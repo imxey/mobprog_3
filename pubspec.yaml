@@ -73,6 +73,11 @@ flutter:
      - assets/xeyla.jpg
      - assets/najma.jpg
      - assets/logo.png
+     - assets/poster.png
+     - assets/banner.png
+     - assets/kartu_nama.png
+     - assets/kemasan_box.png
+     - assets/brosur.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
