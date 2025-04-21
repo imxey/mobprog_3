@@ -95,10 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10), // Sedikit lebih kecil dari container biar border kelihatan
                     child: Image.asset(
                       orderImages[index],
-                      fit: BoxFit.fitWidth, // Lebar mengikuti container, tinggi menyesuaikan rasio gambar
+                      fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return const Center(child: Text('Gagal load gambar'));
                       },
