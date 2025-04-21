@@ -24,20 +24,31 @@ class AboutUsScreen extends StatelessWidget {
                 bottomRight: Radius.circular(24),
               ),
             ),
-            child: const SafeArea(
+            child: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Tentang Kami',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      const Text(
+                        'Tentang Kami',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 12),
-                  Text(
+                  const SizedBox(height: 12),
+                  const Text(
                     'Kami adalah mahasiswa TI yang berkolaborasi membuat aplikasi pemesanan jasa desain grafis berbasis mobile.',
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
@@ -45,6 +56,7 @@ class AboutUsScreen extends StatelessWidget {
               ),
             ),
           ),
+
 
           const SizedBox(height: 24),
 
